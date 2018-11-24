@@ -1,0 +1,3 @@
+short cut 
+shift + return for single block
+command + R for entire py file
