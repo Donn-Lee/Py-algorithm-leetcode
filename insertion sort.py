@@ -17,7 +17,7 @@ def insertion_sort(arr):
             #指针向左移动一格，用来比较再右边一个与target
             tail -= 1
         #将target移动到正确的位置，因为arr[tail-1] <= target， 所以arr[tail] = target
-            arr[tail] = target
+        arr[tail] = target
     return arr
 
 print('===============')
