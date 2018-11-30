@@ -1,0 +1,23 @@
+CREATE FUNCTION getNthHighestSalary(N INT) RETURNS INT
+BEGIN
+  RETURN (
+      # Write your MySQL query statement below.
+    select case when count(distinct salary) >= N then(
+        select salary
+        from(
+              select distinct salary  ##!!这里要有一个distinct
+              from employee
+              order by salary desc
+              limit N
+                ) as nth_salary
+        order by salary asc
+        limit 1
+        )
+      
+    else null
+    end as NthHighestSalary
+    from employee
+                
+      
+  );
+END
