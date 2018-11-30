@@ -1,0 +1,28 @@
+# Write your MySQL query statement below
+select if( count(distinct salary)>1,  (    
+    select salary 
+    from
+    (select salary 
+    from employee 
+    order by salary desc
+    limit 2) as two_table
+    order by salary 
+    limit 1),
+    Null) as SecondHighestSalary
+from employee
+
+#
+# Write your MySQL query statement below
+select case when count(distinct salary)>1 then (    
+    select salary 
+    from
+    (select salary 
+    from employee 
+    order by salary desc
+    limit 2) as two_table
+    order by salary 
+    limit 1) 
+    
+    else Null
+    end as SecondHighestSalary
+from employee
