@@ -1,0 +1,25 @@
+-- /* Write your T-SQL query statement below */
+with temp(rk_id,num, rk_diff) as(
+select row_number() over( order by id) as rk_id ,num,
+       row_number() over( order by id)- row_number() over(partition by num order by id) as rk_diff
+from logs
+    )
+
+select distinct num as ConsecutiveNums
+from temp
+group by num,rk_diff
+having count(1) >=3
+
+
+
+
+with temp (rk_id,num) as(
+select row_number() over(order by id) as rk_id ,num
+from logs
+)
+select distinct t1.num as ConsecutiveNums
+from temp t1, temp t2,temp t3
+where t1.rk_id = t2.rk_id - 1
+     and t2.rk_id = t3.rk_id - 1
+      and t1.num = t2.num
+      and t1.num = t3.num

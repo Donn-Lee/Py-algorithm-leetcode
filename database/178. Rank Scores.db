@@ -1,0 +1,12 @@
+select s.score,
+( select count(distinct s1.score) from scores s1 where s1.score>= s.score) as rank
+
+from scores s
+order by rank
+ #with 是ms sql server的clause
+
+ /* Write your T-SQL query statement below */
+
+
+select score, dense_rank() over(order by score desc)as rank
+from scores
